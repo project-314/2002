@@ -687,17 +687,21 @@ export default {
         "ระดับความสำคัญ (Importance level) ประกอบด้วย " +
         "1. จำเป็นต้องมี (Must to have)" +
         "2. ควรจะมี  (Shound to have)" +
-        "3. ทางเลือก (Optional)";
+        "3. ทางเลือก (Optional)" +
       "เงื่อนไข (Condition)" +
         " อาชีพเป้าหมาย:" +
-        this.planCareer +
+        "นักบัญชี" +
+        // this.planCareer +
         " กลุ่มอาชีพ:" +
-        this.ca_group_name +
+        "อาจารย์ผู้สอนบัญชี, พนักงานการเงิน " +
+        // this.ca_group_name +
         " คุณสมบัติ/ทักษะ:" +
-        this.Qualification +
+        "การวิเคราะห์ " +
+        // this.Qualification +
         " กลุ่มคุณสมบัติ/ทักษะ:" +
         this.qualification_group_name +
         " คำสั่ง " +
+        // "จาก เงื่อนไข ให้เเนะนำ ค่าเป้าหมาย และระดับความสำคัญ ที่ดีเพียง 1 ตัวเลือก"
         "จาก เงื่อนไข ให้เเนะนำ Target level และ Importance level ที่ดีเพียง 1 ระดับ";
       this.messages.push({
         from: "user",

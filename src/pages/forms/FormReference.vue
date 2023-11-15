@@ -649,9 +649,6 @@ export default {
   name: "FormSelfAssessment",
   data() {
     return {
-       //chat gpt
-       currentMessage: "",
-      messages: [],
       // ---------------------------------------------------------------------------------
 
       // ---------------------------------------------------------------------------------
@@ -860,39 +857,6 @@ export default {
     };
   },
   methods: {
-    async sendMessage(message) {
-      console.log("อาชีพเป้าหมาย:", this.plan_career_id);
-      console.log("คุณสมบัติ:", this.qa_plan_career_id);
-      
-      message =
-        "เงื่อนไข" +
-        " สถาบัน:" +
-        this.institute.label +
-        " คณะ:" +
-        this.faculty.label +
-        " ปริญญา:" +
-        this.degree.label +
-        "สาขา:" +
-        this.department.label +
-        "ความพิการ:" +
-        this.disability.label +
-        "คำสั่ง" +
-        " ให้ค้นหาอาชีพ [career list]";
-      this.messages.push({
-        from: "user",
-        data: message,
-      });
-      await axios
-        .post("https://chat-gpt-icp.onrender.com/chatbot", {
-          message: message,
-        })
-        .then((response) => {
-          this.messages.push({
-            from: "chatGpt",
-            data: response.data.data, // Access the 'data' property of the response object
-          });
-        });
-    },
     // นำออกไฟล์ excel
     exportTable() {
       console.log("Export excel");

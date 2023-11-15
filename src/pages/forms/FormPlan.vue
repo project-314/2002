@@ -575,6 +575,10 @@ export default {
   name: "FormPlan",
   data() {
     return {
+       //----------
+      //chat gpt
+      currentMessage: "",
+      messages: [],
       file_export: "",
       url_api_plan: "",
       url_api_plan_career: "",

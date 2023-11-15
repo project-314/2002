@@ -407,11 +407,6 @@ export default {
   data() {
     return {
       //----------
-      //----------
-      //chat gpt
-      currentMessage: "",
-      messages: [],
-      //----------
       file_export: "",
       pdpa: ref(false),
       picked: new Date(),

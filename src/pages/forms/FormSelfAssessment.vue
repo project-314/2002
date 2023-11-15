@@ -858,6 +858,9 @@ export default {
   name: "FormSelfAssessment",
   data() {
     return {
+       //chat gpt
+       currentMessage: "",
+      messages: [],
       url: "",
       file_export: "",
       url_api_career_qualification: "",
@@ -1192,6 +1195,47 @@ export default {
     };
   },
   methods: {
+    async sendMessage(message) {
+      console.log("อาชีพเป้าหมาย:", this.plan_career.options);
+      console.log("คุณสมบัติ:", this.qa_plan_career.options);
+      console.log("ผลการพัฒนาตนเอง:", this.perform.options);
+      message =
+      "ผลการพัฒนาตนเอง " +
+        "1. ต้องการรู้จักหรือมีทักษะนี้เพียงเล็กน้อยเท่านั้น " +
+        "2. ต้องการเรียนทักษะนี้บ้างเพื่อให้พอทำได้ ถึงแม้จะน้อยกว่าคนทั่วไป " +
+        "3. ต้องการมีประสบการณ์ในการใช้ทักษะนี้เป็นครั้งคราว หรือทำได้เทียบเท่ากับคนทั่วไป " +
+        "4. ต้องการใช้ทักษะนี้ประจําหรือในงานและทำได้ดีกว่าคนทั่วไป " +
+        "5. ต้องการเป็นผู้ที่สามารถถ่ายทอดทักษะนี้แก่ผู้อื่นได้ หรือเป็นต้นแบบของทักษะนี้แก้ผู้อื่นได้ " +
+        "6. (Yes) มีใบประกาศ มีใบรับรอง ผ่านการฝึกประสบการณ์ ได้รับใบอนุญาติขับขี่ " +
+        "ระดับความเชี่ยวชาญ ประกอบด้วย " +
+        "1. ระดับเเย่ " +
+        "2. ระดับพอใช้ " +
+        "3. ระดับดี " +
+        "4. ระดับดีเยี่ยม " +
+        "เงื่อนไข" +
+        " อาชีพเป้าหมาย:" +
+        this.plan_career.options +
+        " คุณสมบัติ:" +
+        this.qa_plan_career.options +
+        "ผลการพัฒนาตนเอง:" + this.perform.options+
+
+        "คำสั่ง" +
+        "จาก เงื่อนไข ให้นำผลการพัฒนาตนเองมาประเมิน และเเนะนำระดับความเชี่ยวชาญ ที่ดีมาเพียง 1 ตัวเลือก";
+      this.messages.push({
+        from: "user",
+        data: message,
+      });
+      await axios
+        .post("https://chat-gpt-icp.onrender.com/chatbot", {
+          message: message,
+        })
+        .then((response) => {
+          this.messages.push({
+            from: "chatGpt",
+            data: response.data.data, // Access the 'data' property of the response object
+          });
+        });
+    },
     yearToDay(day_to_year) {
       var year_to_day = day_to_year.split("/");
       return year_to_day[2] + "/" + year_to_day[1] + "/" + year_to_day[0];
